@@ -12,8 +12,11 @@
   "license": "ISC",
   "dependencies": {
     "couchbase": "^3.2.6",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "fastify": "^4.9.2",
+    "fastify": "^4.10.0",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
     "node-couchdb": "^2.0.0",
     "nodemon": "^2.0.20",
     "ottoman": "^2.2.2"

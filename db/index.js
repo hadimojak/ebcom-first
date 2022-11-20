@@ -1,44 +1,39 @@
 var couchbase = require("couchbase");
 
 async function main() {
-  const clusterConnStr = "couchbases://cb.5hpyveasfjwyafi.cloud.couchbase.com";
-  const username = "mojak";
-  const password = "Mojak_@1516";
-  const bucketName = "travel-sample";
+  const clusterConnStr = "192.168.120.126:8091/";
+  const username = "root";
+  const password = "123456";
+  const bucketName = "default";
 
+  // try {
   const cluster = await couchbase.connect(clusterConnStr, {
     username: username,
     password: password,
-    kvTimeout: 10000,
   });
-
-  // Sets a pre-configured profile called "wanDevelopment" to help avoid latency issues
-  // when accessing Capella from a different Wide Area Network
-  // or Availability Zone (e.g. your laptop).
-  //   cluster.applyProfile("wanDevelopment");
+  // } catch (error) {}
 
   const bucket = cluster.bucket(bucketName);
+  const collection = bucket.collection("testUser");
 
-  // Get a reference to the default collection, required only for older Couchbase server versions
-  const defaultCollection = bucket.defaultCollection();
+  const result = await collection.get("user");
+  console.log(result.content);
 
-  const collection = bucket.collection("users");
+  // const user = {
+  //   type: "user",
+  //   name: "Michael",
+  //   email: "michael123@test.com",
+  //   interests: ["Swimming", "Rowing"],
+  // };
 
-  const user = {
-    type: 'user',
-    name: 'Michael',
-    email: 'michael123@test.com',
-    interests: ['Swimming', 'Rowing'],
-  }
+  // await collection.upsert("user", testUser);
 
-  await collection.upsert()
+  // queryResult.rows.forEach((row) => {
+  //   console.log(row);
+  // });
 
-  //   const user = {
-  //     type: 'user',
-  //     name: 'Michael',
-  //     email: 'michael123@test.com',
-  //     interests: ['Swimming', 'Rowing'],
-  //   }
+  // const data = await collection.get("user");
+  // console.log(data);
 
   //   // Create and store a document
   //   await collection.upsert('michael123', user)
