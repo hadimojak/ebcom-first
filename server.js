@@ -1,56 +1,29 @@
 // CommonJs
-const fastify = require("fastify");
-const {get} = require("./services/auth/auth.service");
+const Fastify = require("fastify");
+const request = require("request-promise-native");
+const app = Fastify({ logger: true });
+const { cluster,bucket,collection,couchbase } = require("./db/conn");
+require("dotenv").config();
 
-const app = fastify({
-  logger: {
-    level: "info",
-    file: "./service.log",
-    serializers: {
-      res(res) {
-        return {
-          statusCode: res.statusCode,
-          request: res.raw.input,
-          headers: res.raw.headers,
-          payload: res.raw.payload,
-        };
-      },
-    },
-  },
-  pluginTimeout: 3000,
-  ignoreTrailingSlash: true,
-  bodyLimit: 10240,
-  keepAliveTimeout: 15000,
-});
-
-app.decorate("authentication", async (req, reply) => {});
-// app.addHook("preHandler", function (req, reply, done) {
-//   req.user = "meee";
-//   done();
+// app.addHook("preValidation", async function (req, reply) {
+//   if (!req.auth) {
+//     const data = await request.get({
+//       url: "http://localhost:4000/",
+//     });
+//     req.auth = data;
+//     return;
+//   }
 // });
 
-const opts = {
-  schema: {
-    response: {
-      200: {
-        type: "object",
-        // properties: {
-        //   hello: { type: "string" },
-        //   number: { type: "number" },
-        // },
-      },
-    },
-  },
-};
-app.get("/", opts, (req, reply) => {
-  reply.send("hellow ", req.user);
-});
+app.register(require("./routes/index"));
 
-/**
- * Run the server!
- */
 const start = async () => {
   try {
+    // const userExict = await collection.insert('username', {
+    //   username: 'username',
+    //   password: 'password',
+    // });
+    console.log(app.printRoutes());
     await app.listen({ port: 3000 });
   } catch (err) {
     app.log.error(err);
