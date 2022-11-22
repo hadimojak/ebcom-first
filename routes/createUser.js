@@ -10,6 +10,7 @@ async function createUser(req, reply) {
       return reply.send({ message: "user already exict" });
   } catch (error) {
     //user not exict
+    //jwt token must be created
     console.log("user not found");
     const result = await collection.insert(username, {
       id: uuidv4(),
@@ -23,5 +24,8 @@ async function createUser(req, reply) {
 async function loginUser(req, reply) {
   const { username, password } = req.body;
 }
+async function logoutUser(req, reply) {
+  const { username, password } = req.body;
+}
 
-module.exports = { createUser, loginUser };
+module.exports = { createUser, loginUser, logoutUser };

@@ -1,9 +1,10 @@
 const request = require("request-promise-native");
 
-const { createUser,loginUser } = require("./createUser");
+const { createUser,loginUser,logoutUser } = require("./createUser");
 
 module.exports = function (fastify, options, next) {
-  fastify.post("/signin", createUser);
-  fastify.post("/login", loginUser);
+  fastify.post("/signup", createUser);
+  fastify.post("/signin", loginUser);
+  fastify.post("/signout", logoutUser);
   next();
 };
