@@ -49,11 +49,27 @@ async function loginUser(req, reply) {
 }
 async function logoutUser(req, reply) {
   req.headers.authorization = "";
-  reply.code(300).send('user signout')
+  reply.code(300).send("user signout");
 }
 
 async function getPermissions(req, reply) {
   reply.code(200).send("resources");
 }
 
-module.exports = { createUser, loginUser, logoutUser, getPermissions };
+async function addPermission(req, reply) {}
+async function getPermission(req, reply) {}
+async function updatePermission(req, reply) {}
+async function removePermission(req, reply) {}
+async function addAccess(req, reply) {}
+
+module.exports = {
+  createUser,
+  loginUser,
+  logoutUser,
+  getPermissions,
+  addPermission,
+  getPermission,
+  updatePermission,
+  removePermission,
+  addAccess,
+};
