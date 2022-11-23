@@ -12,15 +12,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fastify/flash": "^5.1.0",
+    "@fastify/secure-session": "^5.2.0",
+    "bcrypt": "^5.1.0",
     "couchbase": "^3.2.6",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "fastify": "^4.10.0",
-    "isomorphic-unfetch": "^3.1.0",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.20",
-    "ottoman": "^2.2.2",
     "request-promise-native": "^1.0.9",
     "uuid": "^9.0.0"
   }

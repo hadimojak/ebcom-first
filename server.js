@@ -1,22 +1,14 @@
 const Fastify = require("fastify");
-const request = require("request-promise-native");
 const app = Fastify({ logger: true });
+const route = require("./routes/index");
+const fs = require("fs");
+const path = require("path");
 require("dotenv").config();
 require("./db/conn");
 
 
-
-// app.addHook("preValidation", async function (req, reply) {
-//   if (!req.auth) {
-//     const data = await request.get({
-//       url: "http://localhost:4000/",
-//     });
-//     req.auth = data;
-//     return;
-//   }
-// });
-
-app.register(require("./routes/index"));
+app.register(route.auth);
+app.register(route.general);
 
 const start = async () => {
   try {

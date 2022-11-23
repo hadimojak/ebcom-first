@@ -1,0 +1,8 @@
+GET http://localhost:3000/permissionClass HTTP/1.1
+content-type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXJuYW01NTUxIiwiaWF0IjoxNjY5MjA2ODA3LCJleHAiOjE2NjkyMTE4MDd9.RLN2l__8zw6v6-LjJZ8dQBRLmG28Xx7NOqHk7wG9je8
+
+{
+    "username": "usernam5551",
+    "password": "0015166031"
+}
