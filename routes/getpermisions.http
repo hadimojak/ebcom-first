@@ -1,6 +1,6 @@
 GET http://localhost:3000/permissionClass HTTP/1.1
 content-type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXJuYW01NTUxIiwiaWF0IjoxNjY5MjA2ODA3LCJleHAiOjE2NjkyMTE4MDd9.RLN2l__8zw6v6-LjJZ8dQBRLmG28Xx7NOqHk7wG9je8
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjEyMzY1NDYiLCJpYXQiOjE2Njk0NDU0NjUsImV4cCI6MTY2OTQ1MDQ2NX0.3E5Is3m8sjGjadOYUQzKd3AbqOEdcNZRk8E70rnxxZg
 
 {
     "username": "usernam5551",
