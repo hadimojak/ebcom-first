@@ -1,4 +1,4 @@
-const AccessRole = {
+const Role = {
   id: "uuid",
   clientId: "uuid",
   title: "string",
@@ -15,6 +15,7 @@ const AccessRole = {
 };
 
 const Permission = {
+  clientId: "uuid",
   id: "uuid",
   access: "string",
   fields: ["string"],

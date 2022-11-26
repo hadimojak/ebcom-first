@@ -1,4 +1,4 @@
-GET http://localhost:3000/permissionClass HTTP/1.1
+GET http://localhost:3000//getPermission/:permissionId HTTP/1.1
 content-type: application/json
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjEyMzY1NDYiLCJpYXQiOjE2Njk0NDU0NjUsImV4cCI6MTY2OTQ1MDQ2NX0.3E5Is3m8sjGjadOYUQzKd3AbqOEdcNZRk8E70rnxxZg
 user_id: 

@@ -1,4 +1,4 @@
-const { collection } = require("../db/conn");
+const { collection, cluster } = require("../db/conn");
 require("dotenv").config();
 const { v4: uuidv4 } = require("uuid");
 const bcrypt = require("bcrypt");
@@ -57,12 +57,43 @@ async function logoutUser(req, reply) {
   reply.code(300).send("user signout");
 }
 
-async function addPermission(req, reply) {}
+async function addPermission(req, reply) {
+  const userId = req.headers.user_id;
+  const clientId = req.headers.client_id;
+  const { id, access, fields, permissionClass, status } = req.body;
+
+  const result = await collection.insert(id, {
+    id,
+    access,
+    fields,
+    permissionClass,
+    status,
+    creator: userId,
+    createdts: Date.now(),
+  });
+}
 async function getPermission(req, reply) {
   const clientId = req.headers.client_id;
   const permissionId = req.params.permissionId;
+
+  try {
+    const permission = await collection.get(permissionId);
+    return reply.code(201).send(permission.content);
+  } catch (error) {
+    return reply
+      .code(401)
+      .send({ message: "permisssion not found", error: true });
+  }
 }
-async function inquiryPermission(req, reply) {}
+async function inquiryPermission(req, reply) {
+  const clientId = req.headers.client_id;
+
+  const permissions = await cluster.query(
+    "SELECT * FROM default WHERE username='mojak123';"
+  );
+
+  console.log(permissions.rows[0])
+}
 async function updatePermission(req, reply) {}
 async function patchPermission(req, reply) {}
 async function removePermission(req, reply) {}

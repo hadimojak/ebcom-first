@@ -30,17 +30,17 @@ async function general(fastify, options, next) {
   fastify.get("/getPermission/:permissionId", getPermission);
   fastify.get("/permissionsInquiry", inquiryPermission);
   fastify.post("/addPermission", addPermission);
-  fastify.put("/updatePermission", updatePermission);
-  fastify.patch("/updatePermission", patchPermission);
-  fastify.delete("/removePermission", removePermission);
+  fastify.put("/updatePermission/:permissionId", updatePermission);
+  fastify.patch("/patchPermission/:permissionId", patchPermission);
+  fastify.delete("/removePermission/:permissionId", removePermission);
 
-  fastify.get("/getRole", getRole);
+  fastify.get("/getRole/:roleId", getRole);
   fastify.get("/getInquiryRoles", inquiryRole);
   fastify.post("/addRole", addRole);
-  fastify.get("/getInquiryRolePermission", inquiryRolePermission);
-  fastify.put("/updateRole", updateRole);
-  fastify.patch("/patchRole", patchRole);
-  fastify.post("/removeRoll", removeRole);
+  fastify.get("/getRole/:roleId/permissions", inquiryRolePermission);
+  fastify.put("/updateRole/:roleId", updateRole);
+  fastify.patch("/patchRole/:roleId", patchRole);
+  fastify.post("/removeRole/:roleId", removeRole);
 
   fastify.addHook("onRequest", async (req, res) => {
     if (!req.headers.authorization) {

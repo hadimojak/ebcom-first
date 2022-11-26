@@ -1,0 +1,13 @@
+GET http://localhost:3000/permissionsInquiry HTTP/1.1
+content-type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1vamFrMTIzIiwiaWF0IjoxNjY5NDY3NTgyLCJleHAiOjE2Njk0NzI1ODJ9.jrU2Z96YuVb-Pmi8_7WJpKtIHaJCEkRBeibTiLE4XvI
+user_id:49bae0d5-d1a6-4ba9-930d-ea8307293265
+clinet_id:8779cb94-5926-44b8-b07a-41360b6066ad
+
+{
+    "id": "uuid",
+    "access": "c|r|u|d|l",
+    "fields":["asdasd","asdasd"],
+    "permissionClass":"asdasdas",
+    "status":"active",
+}
