@@ -2,12 +2,19 @@ const {
   createUser,
   loginUser,
   logoutUser,
-  getPermissions,
-  addPermission,
   getPermission,
+  inquiryPermission,
+  addPermission,
   updatePermission,
+  patchPermission,
   removePermission,
-  addAccess,
+  addRole,
+  getRole,
+  inquiryRole,
+  inquiryRolePermission,
+  removeRole,
+  updateRole,
+  patchRole,
 } = require("./controller");
 const request = require("request-promise-native");
 
@@ -19,12 +26,21 @@ async function auth(fastify, options, next) {
 
 async function general(fastify, options, next) {
   fastify.post("/signout", logoutUser);
-  fastify.get("/permissionClass", getPermissions);
+
+  fastify.get("/getPermission/:permissionId", getPermission);
+  fastify.get("/permissionsInquiry", inquiryPermission);
   fastify.post("/addPermission", addPermission);
-  fastify.get("/getPermission", getPermission);
   fastify.put("/updatePermission", updatePermission);
+  fastify.patch("/updatePermission", patchPermission);
   fastify.delete("/removePermission", removePermission);
-  fastify.post("/addAccess", addAccess);
+
+  fastify.get("/getRole", getRole);
+  fastify.get("/getInquiryRoles", inquiryRole);
+  fastify.post("/addRole", addRole);
+  fastify.get("/getInquiryRolePermission", inquiryRolePermission);
+  fastify.put("/updateRole", updateRole);
+  fastify.patch("/patchRole", patchRole);
+  fastify.post("/removeRoll", removeRole);
 
   fastify.addHook("onRequest", async (req, res) => {
     if (!req.headers.authorization) {
